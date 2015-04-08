@@ -34,11 +34,10 @@ ul.nav{
 <script type="text/javascript">
 $(document).ready(function(){
   $(window).scroll(function(){
-    if ($("#nav-sidebar>ul>li").hasClass('active')){
       $("#nav-sidebar>ul>li>div").addClass('collapse');
+      $("#nav-sidebar>ul>li>div").removeClass('in');
       $("#nav-sidebar>ul>li.active>div").removeClass('collapse');
-    }
-  })
+    })
 })
 </script>
 
@@ -50,13 +49,13 @@ $(document).ready(function(){
         {% assign sortedCategories = site.categories | sort %}
         {% for category in sortedCategories %}
         <li>
-          <a data-toggle="collapse" aria-expanded="false" aria-controls="{{ category[0] | replace:' ','-' | replace:'.','' }}" href="#{{ category[0] | replace:' ','-' | replace:'.','' }}"><small>{{ category[0] }}</small></a>
+          <a data-toggle="collapse" aria-expanded="false" aria-controls="{{ category[0] | replace:' ','-' | replace:'.','' }}" href="#{{ category[0] | replace:' ','-' | replace:'.','' }}"><small>{{ category[0] | upcase }}</small></a>
           <div class="collapse" id="{{ category[0] | replace:' ','-' | replace:'.','' }}">
             <ul class="nav nav-pills nav-stacked">
               {% for posts in category %}
               {% for post in posts reversed %}
               <li class="nav-item">
-                <a href="#{{ post.id | remove_first:'/'}}"><small>{{ post.title | downcase }}</small></a>
+                <a href="#{{ post.id | remove_first:'/'}}"><small>{{ post.title }}</small></a>
               </li>
               {% endfor %}
               {% endfor %}
@@ -70,7 +69,7 @@ $(document).ready(function(){
     <div class="col-md-12">
       {% assign sortedCategories = site.categories | sort %}
       {% for category in sortedCategories %}
-      <h1 class="post-title" id="{{ category[0] | replace:' ','-' | replace:'.','' }}">{{ category[0] | join: "/" }}</h1>
+      <h1 class="post-title" id="{{ category[0] | replace:' ','-' | replace:'.','' }}">{{ category[0] | join: "/" | upcase }}</h1>
       <ul class="post-list">
         {% for posts in category %}
         {% for post in posts reversed %}
