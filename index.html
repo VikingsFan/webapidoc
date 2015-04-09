@@ -33,6 +33,7 @@ ul.nav{
 
 <script type="text/javascript">
 $(document).ready(function(){
+  $("#nav-sidebar>ul>li>div").hide();
   $(window).scroll(function(){
       $("#nav-sidebar>ul>li>div").hide();
       $("#nav-sidebar>ul>li.active>div").show();
@@ -54,7 +55,7 @@ $(document).ready(function(){
         {% assign sortedCategories = site.categories | sort %}
         {% for category in sortedCategories %}
         <li class="panel panel-default">
-          <a class="panel-heading" href="#{{ category[0] | replace:' ','-' | replace:'.','' }}">
+          <a class="panel-heading">
             <small>{{ category[0] | upcase }}</small>
           </a>
           <div class="panel-body">
