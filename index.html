@@ -34,10 +34,15 @@ ul.nav{
 <script type="text/javascript">
 $(document).ready(function(){
   $(window).scroll(function(){
-      $("#nav-sidebar>ul>li>div").addClass('collapse');
-      $("#nav-sidebar>ul>li>div").removeClass('in');
-      $("#nav-sidebar>ul>li.active>div").removeClass('collapse');
-    })
+      $("#nav-sidebar>ul>li>div").hide();
+      $("#nav-sidebar>ul>li.active>div").show();
+    });
+  $("#nav-sidebar>ul>li").click(function(){
+      $("#nav-sidebar>ul>li").removeClass('active');
+      $(this).addClass('active');
+      $("#nav-sidebar>ul>li>div").hide();
+      $(this).children('div').show();
+  });
 })
 </script>
 
@@ -48,9 +53,11 @@ $(document).ready(function(){
       <ul class="nav nav-pills nav-stacked">
         {% assign sortedCategories = site.categories | sort %}
         {% for category in sortedCategories %}
-        <li>
-          <a data-toggle="collapse" aria-expanded="false" aria-controls="{{ category[0] | replace:' ','-' | replace:'.','' }}" href="#{{ category[0] | replace:' ','-' | replace:'.','' }}"><small>{{ category[0] | upcase }}</small></a>
-          <div class="collapse" id="{{ category[0] | replace:' ','-' | replace:'.','' }}">
+        <li class="panel panel-default">
+          <a class="panel-heading" href="#{{ category[0] | replace:' ','-' | replace:'.','' }}">
+            <small>{{ category[0] | upcase }}</small>
+          </a>
+          <div class="panel-body">
             <ul class="nav nav-pills nav-stacked">
               {% for posts in category %}
               {% for post in posts reversed %}
