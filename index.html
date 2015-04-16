@@ -5,12 +5,12 @@ layout: default
 .affix-top{
   position:fixed;
   top:80px;
-  left: 80%;
+  left: 75%;
 }
 .affix{
   position:fixed;
   top:-100px;
-  left: 80%;
+  left: 75%;
 }
 .post-title{
   margin-bottom: 30px;
@@ -61,7 +61,7 @@ $(document).ready(function(){
 <div class="home">
 
   <div class="row">
-    <div id="nav-sidebar" class="col-md-2" data-spy="affix" data-offset-top="20000">
+    <div id="nav-sidebar" class="col-md-3" data-spy="affix" data-offset-top="20000">
       <ul class="nav nav-pills nav-stacked">
         {% assign sortedCategories = site.categories | sort %}
         {% for category in sortedCategories %}
